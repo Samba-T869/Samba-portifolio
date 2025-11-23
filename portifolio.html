@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BONIPHACE SAMBA PORTIFOLIO</title>
+    <link rel="icon" href="{{url_for('static', filename='02.jpg')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Metropolis:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+    :root{
+        --primary: brown;
+        --secondary: gold;
+        --white: #ffffff;
+        --black: #000000;
+        --light: rgba(255,255,255,0.7);
+        --dark: rgba(0,0,0,0.6);
+        --success: rgba(112,200,89,0.7);
+        --error: rgba(255,0,0,0.5);
+        --font: 'Montserrat', sans-serif;
+    }
+    
+    *{
+        margin:0;
+        padding:0;
+        box-shadow: border-box;
+        font-size: var(--font);
+    }
+    body{
+        max-width: 1200px;
+        background: var(--primary);
+        color: var(--secondary);
+        line-height: 1.6;
+    }
+    
+    header{
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        padding: 20px 15px;
+        background: var(--primary);
+        box-shadow: 0 0 12px 0 var(--dark);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-width: 1200px;
+        z-index: 1000;
+    }
+    .logo{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: var(--white);
+    }
+    .logo img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        filter: drop-shadow(0 0 5px rgba(0,255,255,0.5));
+    }
+    .logo i{
+        font-size: 2rem;
+        padding: 2px;
+        cursor: pointer;
+        margin-right: 2rem;
+    }
+    .logo i:hover{
+        color: var(--secondary);
+        animation: zoom-out 0.5s ease;
+    }
+    .fa-sun{
+        display: none;
+    }
+    nav{
+        /*float: right;*/
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        max-width: 1200px;
+        font-size: 1.2rem;
+    }
+    nav a{
+        color: var(--white);
+        font-weight: bold;
+        text-decoration: none;
+        animation: zoom-out 1s ease;
+    }
+    nav a:hover{
+        color: var(--secondary);
+        padding: 0 0 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .dropdown{
+        cursor: pointer;
+    }
+    .navme{
+        display: none;
+    }
+    .nav-links:hover .navme{
+        display: block;
+    }
+    
+    main{
+        width: 100%;
+        padding: 120px 15px 30px;
+    }
+    
+    section{
+        background: var(--white);
+        box-shadow: 0 10px 30px var(--secondary);
+        padding: 30px 15px;
+        margin: 20px 0;
+        border-radius: 6px;
+    }
+    
+    .hero{
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+    }
+    .hero h1{
+        margin-bottom: 30px;
+        position: relative;
+        font-size: 2.3rem;
+        color: var(--primary);
+    }
+    .hero img{
+        margin:20px 30px;
+        width: 300;
+        height: 300px;
+        border-radius: 50%;
+        font-size: 1rem;
+        filter: drop-shadow(0 0 5px rgba(0,255,255,0.5));
+    }
+    .hero p{
+        color: var(--dark);
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+    .hero p span{
+        color: var(--secondary);
+    }
+    
+    .features{
+        /*margin-top: 230px;*/
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+    .features h2{
+        font-size: 2rem;
+        color: var(--primary);
+    }
+    .features p{
+        color: var(--dark);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    .features ul{
+        margin-left: 2rem;
+        list-style: none;
+        font-size: 1.5rem;
+        gap: 1rem;
+    }
+    .features ul li{
+        line-height: 1.7;
+        gap: 2rem;
+        margin: 3rem auto;
+    }
+    .features ul li i{
+        color: var(--primary);
+        font-size: 1.4rem;
+        margin-right: 10px;
+    }
+    .features ul li a{
+        text-decoration: none;
+        margin-left: 15px;
+        color: var(--secondary);
+        background: var(--primary);
+        padding: 15px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+    }
+    .features ul li a:hover{
+        color: var(--primary);
+        background: var(--secondary);
+    }
+    
+    .hob{
+        /*width: 100%;*/
+        padding: 10px;
+        background: var(--light);
+        border-radius: 6px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hob:hover{
+        animation: zoom-out 1s;
+    }
+    .hob h5{
+       font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+       text-shadow: 2px 2px 4px var(--primary);
+    }
+    .hob p{
+       font-size: 1rem; 
+    }
+    .hob img{
+       width: 80%;
+       height: auto; 
+       margin-top: 1.5rem;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+    
+    footer{
+        max-width: 1200px;
+        width: 100%;
+        background: var(--dark);
+        padding: 30px 15px;
+    }
+    .about{
+       display: grid; 
+    }
+    .instruction{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    .instruction h2{
+        color: var(--secondary);
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .instruction h2:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: var(--secondary);
+    }
+    .instruction p{
+        color: var(--light);
+        font-size: 1.4rem;
+    }
+    
+    .about .logo{
+        display: flex;
+        color: var(--light);
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .about .logo img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 60px;
+    }
+    .about .logo p{
+        font-size: 1.4rem;
+    }
+    
+    .footer-links{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+    .footer-links h2{
+        font-size: 2rem;
+        color: var(--secondary);
+    }
+    .footer-links a{
+        font-size: 1.4rem;
+        margin-left: 30px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.4);
+        color: var(--light);
+        text-decoration: none;
+    }
+    .footer-links a:hover{
+        color: var(--secondary);
+        margin-left: 35px;
+    }
+    
+    .social-links{
+        margin: 60px 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .contacts{
+        display: flex;
+        flex-direction: column;
+    }
+    .contacts h2{
+        font-size: 2rem;
+    }
+    .contacts a{
+        text-decoration: none;
+        color: var(--light);
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    .contacts a:hover{
+        color: var(--secondary);
+        margin-left: 5px;
+    }
+    .contacts a i{
+        margin-right: 7px;
+    }
+    
+    .social{
+        align-items: center;
+        justify-content: center;
+      margin-top: 30px;
+      display: flex;
+      font-size: 1.8rem;
+    }
+    .social a{
+        text-decoration: none;
+        color: var(--light);
+        margin: 0 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+    }
+    .social a:hover{
+        color: var(--secondary);
+        transform: translateY(-5px);
+    }
+    
+    .copyright{
+        border-top: 1px solid rgba(255,255,255,0.3);
+        font-size: 1.3rem;
+        color: var(--white);
+        padding-top: 30px;
+    }
+    .copyright p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    @keyframes zoom-out{
+        0%{transform: translateY(0px);}
+        100%{transform: translateY(5px);}
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="02.jpg" alt="logo">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </div>
+        
+        <div class="nav-links">
+            <nav>
+                <a href="#" class="dropdown">Home</a>
+                <a href="#knowledge" class="navme">Knowledge</a>
+                <a href="#projects" class="navme">Projects</a>
+                <a href="#hobbies" class="navme">Hobbies</a>
+                <a href="#about" class="navme">About</a>
+                <a href="#social" class="navme">Contacts</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero" id="home">
+            <h1>Hi,</h1>
+            <img src="05.jpg" alt="My profile">
+            <p>My name is <span>Boniphace Mateso Samba</span><br>
+              I am a <span>A programmer, Fullstack web developer, Software developer.</span>  
+            </p>
+        </section>
+        
+        <section class="features" id="knowledge">
+            <h2>My knowledges</h2>
+            <p>I have knowledge and experience in these languages</p>
+            
+            <ul>
+                <li><i class="fab fa-html5"></i>Html</li>
+                <li><i class="fab fa-css3-alt"></i>Css</li>
+                <li><i class="fab fa-js"></i>Javascript</li>
+                <li><i class="fab fa-python"></i>Python</li>
+                <li><i class="fas fa-database"></i>Sql</li>
+            </ul>
+        </section>
+        
+        <section class="features" id="projects">
+            <h2>My projects</h2>
+            <p>These are fullstack projects that I developed for experience</p>
+            
+            <ul>
+                <li>Ngalula readers <a href="https://ngalula-readers.onrender.com">View</a></li>
+                <li>Never alone <a href="https://neveralone-vg8m.onrender.com">View</a></li>
+                <li>Automator app <a href="#">View</a></li>
+                <li>Tamsa udom <a href="https://tamsa.onrender.com/">View</a></li>
+            </ul>
+        </section>
+        
+        <section class="features" id="hobbies">
+            <h2>My hobbies</h2>
+            <p>Beside programming and web development, I likes to do these in my free time</p>
+            
+            <div class="hob">
+                <h5>Reading books</h5>
+                <p>Reading books always make my day bright</p>
+                <img src="12.jpg" alt="reading book">
+            </div>
+            
+            <div class="hob">
+                <h5>Exploring the nature</h5>
+                <p>I like doing domestic tourism throung observing the nature and wonders of organisms</p>
+                <img src="flower6.jpeg" alt="Observing nature">
+            </div>
+            
+            <div class="hob">
+                <h5>Watching movies</h5>
+                <p>I like watching horror movies and other exciting movies</p>
+                <img src="49.jpg" alt="Watching movie">
+            </div>
+            
+            <div class="hob">
+                <h5>Playing games</h5>
+                <p>I like playing chess and football soccer game</p>
+                <img src="00.jpg" alt="chess game">
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="about" id="about">
+            <div class="instruction">
+            <h2>About me</h2>
+            <p>I am a web developer with enough period of experience</p>
+            </div>
+            
+            <div class="logo">
+                <img src="02.jpg" alt="logo">
+                <p>ngalulaTech</p>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <h2>Quick links</h2>
+            
+                <a href="#">Home</a>
+                <a href="#knowledge">Knowledge</a>
+                <a href="#projects">Projects</a>
+                <a href="#hobbies">Hobbies</a>
+        </div>
+        
+        <div class="social-links" id="social">
+            <div class="contacts">
+                <h2>Contact me</h2>
+                <a href="mailto:kimwagangalula45@gmail.com"><i class="fas fa-envelope"></i>kimwagangalula45@gmail.com</a>
+                <a href="tel:+255614047802"><i class="fas fa-phone"></i>0614047802</a>
+            </div>
+            
+            <div class="social">
+                <a href="https://www.facebook.com/profile.php?id=100088904439927"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>
+<i style="align-text: center">
+  &copy; 2025. All rights reserved <br>
+      developed by <span title="ngalulaTech">Samba.</span>
+</i>
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+    const body = document.body;
+    const sun = document.querySelector('.fa-sun');
+    const moon = document.querySelector('.fa-moon');
+    moon.addEventListener('click', ()=>{
+        body.style.background ='black';
+        sun.style.display ='block';
+        moon.style.display ='none';
+    });
+    
+    sun.addEventListener('click', ()=>{
+        body.style.background ='var(--primary)';
+        moon.style.display ='block';
+        sun.style.display ='none';
+    });
+    </script>
+</body>
+</html>
