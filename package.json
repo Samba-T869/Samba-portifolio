@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "build": "ng build",
+    "dev": "ng serve",
+    "start": "ng serve"
+  }
+}
